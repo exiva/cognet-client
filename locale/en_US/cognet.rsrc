@@ -1,0 +1,286 @@
+﻿interface "{source}org/twodot/cognet/Resources.java"
+events    "{source}org/twodot/cognet/Events.java"
+
+string ID_LOCALE "en_US"
+
+string ID_APP_ID "Cognet Plus"
+string ID_APP_NAME "Cognet++"
+string ID_APP_CLASS "org.twodot.cognet.Cognet"
+string ID_CHOOSER_CATEGORY "apps"
+
+bitmap ID_LARGE_ICON "{base}LargeIcon.png"
+bitmap ID_SMALL_ICON "{base}SmallIcon.png"
+bitmap ID_MINI_ICON "{base}MiniIcon.png"
+bitmap ID_SPLASH_SCREEN "{base}SplashScreenTransparent.png"
+bitmap kBlank "{base}blank.png"
+bitmap kMarker "{base}marker.png"
+bitmap kTag "{base}tag.png"
+bitmap kPending "{base}pending.png"
+
+bitmap kSpeechBubble "{base}bubble.png"
+bitmap kIconOnline "{base}online.png"
+bitmap kIconOffline "{base}offline.png"
+bitmap kIconDisconnected "{base}disconnected.png"
+bitmap kLoginLogo "{base}loginlogo.png"
+
+data compress kLicense 257 "{base}../license.txt"
+
+dialog kAboutDialog
+	title = "About Cognet"
+	doneEvent = kID_DummyEvent
+	doneIsDefault
+	center
+	widthPct = 90
+
+	scrollView id = kID_AboutScroller
+		alignWithParentTop = 0
+		alignWithParentLeft = 0
+		widthPct = 100
+		height = 100
+		initialFocus
+
+		staticTextBox
+			id = kID_AboutText
+			alignWithParentTop = 5
+			alignWithParentLeft = 5
+			fillToRight = 0
+			doesNotHaveBorder
+
+	endScrollView
+endDialog
+
+screen kChatWindow
+	title = "Chat Window"
+	className = "org.twodot.cognet.ChatWindow"
+
+	view
+		id = kChatHistory
+		className = "org.twodot.cognet.ChatHistory"
+		alignWithParentTop = 0
+		alignWithParentLeft = 0
+		fillToRight = 0
+		fillToBottom = 20
+
+	editText
+		id = kCommandLine
+		className = "org.twodot.cognet.ChatWindow$CommandLine"
+		positionBelow = kChatHistory : -1
+		fillToRight = 0
+		initialFocus
+		justifyLeft
+
+endScreen
+
+screen kLoginWindow
+	title = "Cognet Login"
+	className = "org.twodot.cognet.LoginWindow"
+
+	roundRectContainer
+		alignWithParentLeft = 1
+		alignWithParentTop = 1
+		fillToRight = 1
+		fillToBottom = 3
+
+		frameColor = 0x00FFFFFF
+		fillColor = defaultPaneColor
+		framePenSize = 1
+        frameArcSize = 5
+
+		image
+			bitmap = kLoginLogo
+			alignWithParentTop = 2
+			centerHorizontally
+			id = LOGO
+
+		roundRectContainer
+			id = kLoginWindowRoundRect
+			alignWithParentTop = 55
+			centerHorizontally
+			transparent
+			widthPct = 95
+			heightPct = 40
+			frameColor = 0x00FFFFFF
+			fillColor = defaultPaneColor
+			
+			#hostname
+			textField
+				id = kTxtHost
+				alignWithParentTop = 7
+				alignWithParentLeft = 67
+				fillToRight = 120
+			staticText
+				id = LBL_HOST
+				text = "Host:"
+				positionToLeft = kTxtHost : 2
+				transparent
+
+			#port
+			staticText
+				id = LBL_PORT
+				text = "Port:"
+				positionToRight = kTxtHost : 3
+				transparent
+			textField
+				id = kTxtPort
+				positionToRight = LBL_PORT : 2
+				fillToRight = 5
+					
+			#username
+			textField
+				id = kTxtUser
+				positionBelow = kTxtHost : 3
+				fillToRight = 5
+			staticText
+				id = LBL_USER
+				text = " Username:"
+				positionToLeft = kTxtUser : 2
+				transparent
+
+			#password
+			textField
+				id = kTxtPassword
+				positionBelow = kTxtUser : 3
+				fillToRight = 5
+				passwordField
+			staticText
+				id = LBL_PASSWORD
+				text = "Password:"
+				positionToLeft = kTxtPassword : 2
+				transparent
+		endRoundRectContainer
+
+	button
+		event = kEvtLoginButton
+		positionBelow = kLoginWindowRoundRect : 3
+		alignRight = kLoginWindowRoundRect   
+		id = kBtnLogin
+		title = "Connect..."
+		initialFocus
+		iconAlignLeft 
+
+	endRoundRectContainer
+
+endScreen
+
+menu kSettingsMenu
+
+	menuItem
+		title = "Save Settings"
+		shortcut = backButton
+		event = kSettingsDone
+
+	menuItem
+		title = "Cancel"
+		shortcut = '.'
+		event = kSettingsCancel
+
+endMenu
+
+screen kLoginSettingsWindow
+	title = "Login Settings"
+	className = "org.twodot.cognet.LoginSettingsWindow"
+	actionMenu = kSettingsMenu
+
+	staticText
+		id = kLblLoginSettingsHost
+		text = "Hosddt:"
+		alignWithParentLeft = 5
+		alignWithParentTop = 50
+
+	textField
+		id = kTxtLoginSettingsHost
+		#alignHorizontal = kLblLoginSettingsHost
+		positionToRight = kLblLoginSettingsHost : 5
+
+		fillToRight = 5
+		initialFocus
+		justifyLeft
+
+	staticText
+		id = kLblLoginSettingsPort
+		text = "Port:"
+		positionBelow = kLblLoginSettingsHost : 8
+
+	textField
+		id = kTxtLoginSettingsPort
+		#alignHorizontal = kLblLoginSettingsPort
+		positionToRight = kLblLoginSettingsPort : 5
+		width = 50
+
+	staticText
+		id = kLblLoginSettingsUser
+		text = "Username:"
+		positionBelow = kLblLoginSettingsPort : 8
+
+	textField
+		id = kTxtLoginSettingsUser
+		#alignHorizontal = kLblLoginSettingsUser
+		positionToRight = kLblLoginSettingsUser : 5
+		fillToRight = 5
+
+	staticText
+		id = kLblLoginSettingsPassword
+		text = "Password:"
+		positionBelow = kLblLoginSettingsUser : 8
+
+	textField
+		id = kTxtLoginSettingsPassword
+		#alignHorizontal = kLblLoginSettingsPassword
+		positionToRight = kLblLoginSettingsPassword : 5
+
+		fillToRight = 5
+		passwordField
+
+	checkBox
+		id = kChkLoginSettingsAutoReconnect
+		positionBelow = kTxtLoginSettingsPassword : 8
+
+	staticText
+		id = kLblLoginSettingsAutoReconnect
+		text = "Auto Reconnect"
+		positionToRight = kChkLoginSettingsAutoReconnect : 5
+endScreen
+
+#
+## Splash Screen
+#
+splashScreen ID_SPLASH_SCREEN_RESOURCE
+@ IF {screen} = wqvga
+wqvgaSplashScreen
+@ ENDIF
+	image
+		bitmap = ID_SPLASH_SCREEN
+		alignWithParentLeft = 0
+		alignWithParentTop = 0
+	staticTextBox
+		text = ID_APP_NAME
+		id = ID_APP
+		alignWithParentLeft = 2
+		alignWithParentTop = 0
+		fillToRight = 2
+		transparent
+		doesNotHaveBorder
+	staticTextBox
+		text = "Disconnected"
+		id = ID_STATE
+		font = boldOutlineSysFont
+		textColor = defaultSplashScreenTextColor
+		textOutlineColor = defaultSplashScreenTextOutlineColor
+		positionBelow = ID_APP : -4
+		alignWithParentLeft = 4
+		transparent
+		fillToRight = 5
+		doesNotHaveBorder
+	staticTextBox
+		text = ""
+		id = ID_MSG
+		font = boldOutlineSysFont
+		textColor = defaultSplashScreenTextColor
+		textOutlineColor = defaultSplashScreenTextOutlineColor
+		positionBelow = ID_STATE: -4
+		alignWithParentLeft = 4
+		transparent
+		fillToRight = 5
+		doesNotHaveBorder
+		
+endSplashScreen

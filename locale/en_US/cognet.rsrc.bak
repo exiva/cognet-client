@@ -1,0 +1,254 @@
+# -*- coding: utf-8 -*-
+
+string ID_LOCALE "en_US"
+
+string ID_APP_ID "Cognet Plus"
+string ID_APP_NAME "Cognet++"
+string ID_APP_CLASS "org.twodot.cognet.Cognet"
+
+bitmap ID_LARGE_ICON "{base}icon_large.png"
+bitmap ID_SMALL_ICON "{base}icon_small.png"
+bitmap ID_SPLASH_SCREEN "{base}s4x.png"
+//bitmap ID_SPLASH_SCREEN "{base}kale.png"
+
+bitmap kBlank "{base}blank.png"
+bitmap kMarker "{base}marker.png"
+bitmap kTag "{base}tag.png"
+bitmap kPending "{base}icons/cog.png"
+//"{base}pending.png"
+
+interface "../../org/twodot/cognet/Resources.java"
+events    "../../org/twodot/cognet/Events.java"
+
+bitmap kSpeechBubble "{base}bubble.png"
+bitmap kIconOnline "{base}online.png"
+bitmap kIconOffline "{base}offline.png"
+bitmap kIconDisconnected "{base}disconnected.png"
+
+bitmap kLoginLogo "{base}loginlogo.png"
+
+
+
+
+data compress kLicense 257 "{base}../license.txt"
+
+dialog kAboutDialog
+	title = "About Cognet"
+	doneEvent = kID_DummyEvent
+    doneIsDefault
+	center
+
+	scrollView id = kID_AboutScroller
+    	alignWithParentTop = 0
+	    alignWithParentLeft = 0
+	    width = 200
+	    height = 100
+	    initialFocus
+
+		staticTextBox
+			id = kID_AboutText
+			alignWithParentTop = 5
+			alignWithParentLeft = 5
+			fillToRight = 0
+			doesNotHaveBorder
+
+	endScrollView
+endDialog
+
+screen kChatWindow
+    title = "Chat Window"
+    className = "org.twodot.cognet.ChatWindow"
+
+    view
+        id = kChatHistory
+        className = "org.twodot.cognet.ChatHistory"
+        alignWithParentTop = 0
+        alignWithParentLeft = 0
+        fillToRight = 0
+        fillToBottom = 20
+
+    editText
+        id = kCommandLine
+        className = "org.twodot.cognet.ChatWindow$CommandLine"
+        positionBelow = kChatHistory : 2
+        fillToRight = 0
+        initialFocus
+
+endScreen
+
+screen kLoginWindow
+    title = "Cognet Login"
+    className = "org.twodot.cognet.LoginWindow"
+
+    roundRectContainer
+        alignWithParentLeft = 0
+        alignWithParentTop = 0
+        fillToRight = 0
+        fillToBottom = 2
+
+        frameColor = 0x00CDD4E8
+        fillColor = 0x00CDD4E8
+        framePenSize = 1
+        frameArcSize = 5
+
+        image
+            bitmap = kLoginLogo
+            alignWithParentTop = 2
+            centerHorizontally
+
+        roundRectContainer
+            id = kLoginWindowRoundRect
+            alignWithParentTop = 30
+            width = 175
+            fillToBottom = 25
+            centerHorizontally
+
+            frameColor = 0x00FFFFFF
+            fillColor = 0x00CDD4E8
+            framePenSize = 1
+            frameArcSize = 4
+            transparent
+
+
+            textField
+                id = kTxtHost
+                alignWithParentTop  = 3
+                alignWithParentLeft = 60
+                fillToRight = 5
+
+            staticText
+                #id = kLblHost
+                text = "Host:"
+                positionToLeft = kTxtHost : 3
+                transparent
+
+            textField
+                id = kTxtPort
+                positionBelow = kTxtHost : 2
+                width = 50
+
+            staticText
+                #id = kLblPort
+                text = "Port:"
+                positionToLeft= kTxtPort : 3
+                transparent
+
+            textField
+                id = kTxtUser
+                positionBelow = kTxtPort : 2
+                fillToRight = 5
+
+            staticText
+                #id = kLblUser
+                text = "User:"
+                positionToLeft = kTxtUser : 3
+                transparent
+
+            textField
+                id = kTxtPassword
+                positionBelow = kTxtUser : 2
+                fillToRight = 5
+                passwordField
+
+            staticText
+                #id = kLblPassword
+                text = "Password:"
+                positionToLeft = kTxtPassword : 3
+                alignWithParentBottom = 2
+                transparent
+
+        endRoundRectContainer
+
+        button
+            id = kBtnLogin
+            positionBelow = kLoginWindowRoundRect : 3
+            alignRight = kLoginWindowRoundRect
+            width = 70
+            event = kEvtLoginButton
+            initialFocus
+
+    endRoundRectContainer
+
+endScreen
+
+
+menu kSettingsMenu
+
+    menuItem
+        title = "Save Settings"
+        shortcut = backButton
+        event = kSettingsDone
+
+    menuItem
+        title = "Cancel"
+        shortcut = '.'
+        event = kSettingsCancel
+
+endMenu
+
+screen kLoginSettingsWindow
+    title = "Login Settings"
+    className = "org.twodot.cognet.LoginSettingsWindow"
+    actionMenu = kSettingsMenu
+
+    staticText
+        id = kLblLoginSettingsHost
+        text = "Host:"
+        alignWithParentLeft = 5
+        alignWithParentTop = 5
+
+    textField
+        id = kTxtLoginSettingsHost
+        #alignHorizontal = kLblLoginSettingsHost
+        positionToRight = kLblLoginSettingsHost : 5
+
+        fillToRight = 5
+        initialFocus
+
+    staticText
+        id = kLblLoginSettingsPort
+        text = "Port:"
+        positionBelow = kLblLoginSettingsHost : 8
+
+    textField
+        id = kTxtLoginSettingsPort
+        #alignHorizontal = kLblLoginSettingsPort
+        positionToRight = kLblLoginSettingsPort : 5
+        width = 50
+
+    staticText
+        id = kLblLoginSettingsUser
+        text = "User:"
+        positionBelow = kLblLoginSettingsPort : 8
+
+    textField
+        id = kTxtLoginSettingsUser
+        #alignHorizontal = kLblLoginSettingsUser
+        positionToRight = kLblLoginSettingsUser : 5
+
+        fillToRight = 5
+
+    staticText
+        id = kLblLoginSettingsPassword
+        text = "Pass:"
+        positionBelow = kLblLoginSettingsUser : 8
+
+    textField
+        id = kTxtLoginSettingsPassword
+        #alignHorizontal = kLblLoginSettingsPassword
+        positionToRight = kLblLoginSettingsPassword : 5
+
+        fillToRight = 5
+        passwordField
+
+    checkBox
+        id = kChkLoginSettingsAutoReconnect
+        positionBelow = kTxtLoginSettingsPassword : 8
+
+    staticText
+        id = kLblLoginSettingsAutoReconnect
+        text = "Auto Reconnect"
+        positionToRight = kChkLoginSettingsAutoReconnect : 5
+
+endScreen
+
