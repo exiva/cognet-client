@@ -33,7 +33,7 @@ public class Cognet extends Application implements Resources {
 		sMsg = (StaticTextBox) mSplashScreen.getDescendantWithID(ID_MSG);		
 		//cogSettings = new SettingsDB("prefs");
 		CognetSettings.init();
-		DEBUG.p("Testing");
+		DEBUG.p("Testing Again");
 		DEBUG.p("cognet: setReceiveConnectivityEvents(true");
 		try {
 			setReceiveConnectivityEvents(true);
