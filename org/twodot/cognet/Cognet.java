@@ -38,6 +38,7 @@ public class Cognet extends Application implements Resources {
 			setReceiveConnectivityEvents(true);
 			DEBUG.p("Set elements worked");
 		}
+		
 		catch (Exception e) {
 			DEBUG.p("Caught exception setting receiveconnex");
 		}
