@@ -39,6 +39,7 @@ public class ChatHistory extends View implements Resources, Events
 
         mRawLines = new LinkedList();
         mChatLines = new LinkedList();
+
     }
 
 	public void onDecoded() {
