@@ -29,8 +29,12 @@ public class ChatWindow extends ScreenWindow implements Resources, Events
 
 	public void onDecoded() {
 		history = (ChatHistory)this.getDescendantWithID(kChatHistory);
+		// Scrollbar scrollbar = (Scrollbar)this.getDescendantWithID(ID_ABOUT_TEXT_SCROLLBAR);
 		line = (CommandLine)this.getDescendantWithID(kCommandLine);
 		this.setIcon(app.getBundle().getSmallIcon());
+		ScrollView sv = (ScrollView)this.getDescendantWithID(ID_SCROLL_BAR);
+		sv.calcBottom();
+		sv.invalidate();
 	}
 
 	public static ChatWindow newChatWindow(String ctxt, String key, Font font, boolean smileys) {
@@ -196,7 +200,8 @@ public class ChatWindow extends ScreenWindow implements Resources, Events
 		Event e = new Event(this, msg);
 		e.argument = s;
 		//jb: switched to low priority event to prevent freeze on resync.
-		getListener().sendLowPriorityEvent(e);
+		// getDefaultListenerer().sendLowPriorityEvent(e);
+		getDefaultListener().sendLowPriorityEvent(e);
 	}
 
 	void MSG(String s) {
@@ -204,7 +209,8 @@ public class ChatWindow extends ScreenWindow implements Resources, Events
 	}
 
 	void CLR() {
-		getListener().sendEvent(new Event(this, kClear));
+		// getListener().sendEvent(new Event(this, kClear));
+		getDefaultListener().sendEvent(new Event(this, kClear));
 	}
 
 	void URL(String URL, String Category, String Name) {
