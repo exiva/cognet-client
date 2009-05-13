@@ -32,9 +32,6 @@ public class ChatWindow extends ScreenWindow implements Resources, Events
 		// Scrollbar scrollbar = (Scrollbar)this.getDescendantWithID(ID_ABOUT_TEXT_SCROLLBAR);
 		line = (CommandLine)this.getDescendantWithID(kCommandLine);
 		this.setIcon(app.getBundle().getSmallIcon());
-		ScrollView sv = (ScrollView)this.getDescendantWithID(ID_SCROLL_BAR);
-		sv.calcBottom();
-		sv.invalidate();
 	}
 
 	public static ChatWindow newChatWindow(String ctxt, String key, Font font, boolean smileys) {
@@ -201,6 +198,8 @@ public class ChatWindow extends ScreenWindow implements Resources, Events
 		e.argument = s;
 		//jb: switched to low priority event to prevent freeze on resync.
 		// getDefaultListenerer().sendLowPriorityEvent(e);
+		// getDefaultListener().sendLowPriorityEvent(e);
+		// sendLowPriorityEvent(e);
 		getDefaultListener().sendLowPriorityEvent(e);
 	}
 
