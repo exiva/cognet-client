@@ -31,12 +31,13 @@ dialog kAboutDialog
 	doneIsDefault
 	center
 	widthPct = 90
+	heightPct = 90
 
 	scrollView id = kID_AboutScroller
 		alignWithParentTop = 0
 		alignWithParentLeft = 0
 		widthPct = 100
-		height = 100
+		heightPct = 100
 		initialFocus
 
 		staticTextBox
@@ -59,17 +60,19 @@ screen kChatWindow
 		alignWithParentTop = 0
 		alignWithParentLeft = 0
 		fillToRight = 0
-		fillToBottom = 20
+		fillToBottom = 40
+		hasBorder
 
 	editText
 		id = kCommandLine
 		className = "org.twodot.cognet.ChatWindow$CommandLine"
-		positionBelow = kChatHistory : -1
+		positionBelow = kChatHistory : -3
 		fillToRight = 0
 		initialFocus
 		justifyLeft
 
 endScreen
+
 
 screen kLoginWindow
 	title = "Cognet Login"
@@ -88,71 +91,77 @@ screen kLoginWindow
 
 		image
 			bitmap = kLoginLogo
-			alignWithParentTop = 2
+			alignWithParentTop = 5
 			centerHorizontally
 			id = LOGO
 
 		roundRectContainer
 			id = kLoginWindowRoundRect
-			alignWithParentTop = 55
+			# alignWithParentTop = 55
+			positionBelow = LOGO : 0
 			centerHorizontally
 			transparent
 			widthPct = 95
 			heightPct = 40
 			frameColor = 0x00FFFFFF
 			fillColor = defaultPaneColor
-			
+
 			#hostname
-			textField
-				id = kTxtHost
-				alignWithParentTop = 7
-				alignWithParentLeft = 67
-				fillToRight = 120
 			staticText
 				id = LBL_HOST
 				text = "Host:"
-				positionToLeft = kTxtHost : 2
+				@ IF {screen} = fwvga
+				alignWithParentTop = 17
+				@ ELSE
+				alignWithParentTop = 6
+				@ ENDIF
+				alignWithParentLeft = 10
 				transparent
+			textField
+				id = kTxtHost
+				positionToRight = LBL_HOST : 5
+				fillToRight = 140
 
-			#port
+			#port number
 			staticText
 				id = LBL_PORT
-				text = "Port:"
-				positionToRight = kTxtHost : 3
+				text = ":"
+				positionToRight = kTxtHost : 5
 				transparent
 			textField
 				id = kTxtPort
-				positionToRight = LBL_PORT : 2
-				fillToRight = 5
-					
+				positionToRight = LBL_PORT : 5
+				fillToRight = 10
+
 			#username
 			textField
 				id = kTxtUser
-				positionBelow = kTxtHost : 3
-				fillToRight = 5
+				positionBelow = kTxtHost : 5
+				fillToRight = 10
 			staticText
 				id = LBL_USER
-				text = " Username:"
-				positionToLeft = kTxtUser : 2
+				text = "User:"
+				positionToLeft = kTxtUser : 5
 				transparent
 
 			#password
 			textField
 				id = kTxtPassword
-				positionBelow = kTxtUser : 3
-				fillToRight = 5
+				positionBelow = kTxtUser : 5
+				fillToRight = 10
 				passwordField
 			staticText
 				id = LBL_PASSWORD
-				text = "Password:"
-				positionToLeft = kTxtPassword : 2
+				text = "Pass:"
+				positionToLeft = kTxtPassword : 5
 				transparent
+
 		endRoundRectContainer
 
 	button
 		event = kEvtLoginButton
-		positionBelow = kLoginWindowRoundRect : 3
-		alignRight = kLoginWindowRoundRect   
+		positionBelow = kLoginWindowRoundRect : 10
+		alignRight = kLoginWindowRoundRect
 		id = kBtnLogin
 		title = "Connect..."
 		initialFocus
