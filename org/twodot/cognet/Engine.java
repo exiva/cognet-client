@@ -69,7 +69,7 @@ public class Engine extends Listener implements Resources, Runnable
 
             case ONLINE:
 				app.setSplashState(ONLINE);
-                setAllWindowsIcons(app.getBitmap(kIconOnline));
+                // setAllWindowsIcons(app.getBitmap(kIconOnline));
                 // setAllWindowsIcons(kOnlineIcon);
                 this.sendEventAllWindows(new Event(ChatWindow.kChatWindowSetReadOnly,0,0,null));
 
@@ -78,14 +78,14 @@ public class Engine extends Listener implements Resources, Runnable
             case OFFLINE:
 				app.setSplashState(OFFLINE);
                 // setAllWindowsIcons(kOfflineIcon);
-                setAllWindowsIcons(app.getBitmap(kIconOffline));
+                // setAllWindowsIcons(app.getBitmap(kIconOffline));
                 this.sendEventAllWindows(new Event(ChatWindow.kChatWindowSetReadOnly,1,0,null));
 
                 break;
 
             case DISCONNECT:
 				app.setSplashState(DISCONNECT);
-                setAllWindowsIcons(app.getBitmap(kIconDisconnected));
+                // setAllWindowsIcons(app.getBitmap(kIconDisconnected));
                 // setAllWindowsIcons(kDisconnectedIcon);
                 this.sendEventAllWindows(new Event(ChatWindow.kChatWindowSetReadOnly,1,0,null));
 
@@ -594,13 +594,13 @@ public class Engine extends Listener implements Resources, Runnable
 		ChatWindow w = ChatWindow.newChatWindow(context, key,
                 Font.findSystemFont(), CognetSettings.getDoSmileys());
 
-        if (state == ONLINE) {
-            w.setIcon(kOnlineIcon);
-        } else if (state == OFFLINE) {
-            w.setIcon(kOfflineIcon);
-        } else {
-            w.setIcon(kDisconnectedIcon);
-        }
+        // if (state == ONLINE) {
+        //     w.setIcon(kOnlineIcon);
+        // } else if (state == OFFLINE) {
+        //     w.setIcon(kOfflineIcon);
+        // } else {
+        //     w.setIcon(kDisconnectedIcon);
+        // }
 
 		windows.put(key, w);
 
